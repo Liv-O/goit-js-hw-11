@@ -63,13 +63,13 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-     const list = document.querySelector('.gallery');
+     const loader = document.querySelector('.loader');
     
-      list.innerHTML = '<span class="loader"></span>';
+    loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
-    const list = document.querySelector('.gallery');
+    const loader = document.querySelector('.loader');
     
-    list.innerHTML = '';
+    loader.classList.add('hidden');
 }
