@@ -21,6 +21,7 @@ const hanlderSubmit = function (event) {
     } else {
         input.value = '';
         showLoader();
+        clearGallery();
         setTimeout(() => { //щоб лоудер хоч побачити ;)
             getImagesByQuery(q)
             .then(res => {
@@ -30,7 +31,7 @@ const hanlderSubmit = function (event) {
                      iziToast.error({
                     message: 'Sorry, there are no images matching your search query. Please try again!',
                      })
-                    clearGallery();
+                    //clearGallery();
                     
                 } else {
                     createGallery(res.data.hits);
@@ -39,7 +40,7 @@ const hanlderSubmit = function (event) {
             })
             .catch(error => {
                 console.log(error);
-                clearGallery();
+                //clearGallery();
             })
             
         }, 2000);

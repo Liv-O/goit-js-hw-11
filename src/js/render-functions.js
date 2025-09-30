@@ -63,7 +63,7 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-     const loader = document.querySelector('.loader');
+    const loader = document.querySelector('.loader');
     
     loader.classList.remove('hidden');
 }
