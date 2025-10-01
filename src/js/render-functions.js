@@ -1,12 +1,13 @@
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
+
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
+let gallery; 
 
 export function createGallery(images) {
 
     const list = document.querySelector('.gallery');
-    
+   
     const imagesElements = images.map(({ webformatURL, largeImageURL, tags, views, likes, comments, downloads }) => {
         return `<li class="gallery-item">
         <a class="gallery-link" href="${largeImageURL}">
@@ -32,44 +33,45 @@ export function createGallery(images) {
         </table>
        </li>`;
     }).join('');
+     
+    if (list) {
+        list.innerHTML = imagesElements;
 
-    list.innerHTML = imagesElements;
+        if (!gallery) {
 
-    
-        let gallery = new SimpleLightbox('.gallery a', {
-            captions: true,
-            captionsData: 'alt',
-            captionPosition: 'bottom',
-            captionDelay: 250,
-        });
+            gallery = new SimpleLightbox('.gallery a', {
+                captions: true,
+                captionsData: 'alt',
+                captionPosition: 'bottom',
+                captionDelay: 250,
+            });
+
+        } else {
+            gallery.refresh();
+        }
 
         gallery.on('show.simplelightbox', function (event) {
             console.log(`opened image : ${event.target.querySelector('img').alt} :) `);
         });
+    }
     
-        gallery.refresh();
-    
-
-   
-
-
 }
 
 export function clearGallery() {
     const list = document.querySelector('.gallery');
     
-    list.innerHTML = '';
+   if(list) list.innerHTML = '';
 
 }
 
 export function showLoader() {
     const loader = document.querySelector('.loader');
     
-    loader.classList.remove('hidden');
+    if(loader) loader.classList.remove('hidden');
 }
 
 export function hideLoader() {
     const loader = document.querySelector('.loader');
     
-    loader.classList.add('hidden');
+    if(loader) loader.classList.add('hidden');
 }

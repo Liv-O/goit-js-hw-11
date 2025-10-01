@@ -14,7 +14,14 @@ export function getImagesByQuery(query) {
         safesearch: 'true'
     });
 
-    return axios.get(`https://pixabay.com/api/?${param}`);
+    return axios.get(`https://pixabay.com/api/?${param}`)
+        .then(res => {
+             return res.data.hits;
+               })
+        .catch(error => {
+                throw error;
+               
+        })
         
     
 }
